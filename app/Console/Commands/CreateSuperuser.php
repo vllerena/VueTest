@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Info\RoleAttr;
 use App\Models\Info\UserAttr;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -24,13 +26,24 @@ class CreateSuperuser extends Command
         $username = $args['username'];
         $password = $args['password'];
 
-        $user = User::updateOrCreate(
+        $roles = RoleAttr::roles();
+        foreach ($roles as $k => $v)
+            Role::updateOrCreate(
+            [RoleAttr::NAME => $v],
+            [
+                RoleAttr::NAME => $v,
+            ]
+        );
+
+        User::updateOrCreate(
             [UserAttr::USERNAME => $username],
             [
                 UserAttr::NAME => $name,
                 UserAttr::USERNAME => $username,
                 UserAttr::PASSWORD => Hash::make($password),
                 UserAttr::IS_SUPERUSER => true,
+                UserAttr::IS_ACTIVE => true,
+                UserAttr::ROLE_ID => 1,
             ]
         );
 

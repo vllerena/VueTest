@@ -122,6 +122,12 @@
                                                 <span>User</span>
                                             </router-link>
                                         </li>
+                                        <li>
+                                            <router-link to="/permission" class="nav-link">
+                                                <i class="bx bx-book-alt" aria-hidden="true"></i>
+                                                <span>Permission</span>
+                                            </router-link>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>

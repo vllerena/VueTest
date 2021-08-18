@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Info\UserAttr;
+use App\Models\Info\RoleAttr;
 
 class CreateUsersTable extends Migration
 {
@@ -17,6 +18,11 @@ class CreateUsersTable extends Migration
             $table->string(UserAttr::PASSWORD);
             $table->boolean(UserAttr::IS_ACTIVE)->default(true);
             $table->boolean(UserAttr::IS_SUPERUSER)->default(false);
+            $table->foreignId(UserAttr::ROLE_ID)
+                ->nullable()
+                ->constrained(RoleAttr::TABLE_NAME, RoleAttr::ID)
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
             $table->timestamps();
         });
     }

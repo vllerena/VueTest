@@ -22,4 +22,8 @@ class Role extends Model
     protected $casts = [
         RoleAttr::CREATED_AT => 'datetime',
     ];
+
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 }

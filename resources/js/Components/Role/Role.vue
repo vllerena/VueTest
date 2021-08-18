@@ -52,12 +52,18 @@
 </template>
 
 <script>
+import AppStorage from "../../Helpers/AppStorage";
+
 export default {
     name: "Role",
     created() {
         this.allRoles()
         if (!User.loggedIn()){
+            AppStorage.clear()
+            this.$store.commit('setUpdateUser', false)
+            this.$store.commit('setUserName', '')
             this.$router.push({name: '/'})
+            window.location.reload()
         }
     },
     data(){

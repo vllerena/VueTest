@@ -81,7 +81,6 @@ export default {
                         icon: 'success',
                         title: 'Bienvenido(a)!'
                     })
-                    const username = res.data.original.name
                     this.$store.commit('setUpdateUser', true)
                     this.$store.commit('setUserName', res.data.original.name)
                     this.$router.push({name: 'home'})

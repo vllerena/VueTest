@@ -5,15 +5,18 @@ namespace App\Services;
 
 
 use App\Contracts\AuthContract;
+use App\Models\Info\UserAttr;
 use App\Models\User;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Log;
 
 class AuthService implements AuthContract
 {
     public function login($request)
     {
         $credentials = request(['username', 'password']);
-        $token = auth()->attempt($credentials);
+        $user = User::where(UserAttr::USERNAME, 'LIKE', $credentials['username'])->firstOrFail();
+        $token = auth()->login($user);
         return $this->respondWithToken($token);
     }
 

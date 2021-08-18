@@ -11,4 +11,13 @@ class RoleAttr
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     const PERMISSION_ATTR = 'permission';
+
+    static function roles()
+    {
+        return [
+            "Máster",
+            "Administrador",
+            "Empleado",
+        ];
+    }
 }

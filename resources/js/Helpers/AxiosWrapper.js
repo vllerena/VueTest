@@ -67,13 +67,15 @@ async function axiosWrapper(config, method) {
                     this.$store.commit('setUpdateUser', false)
                     this.$store.commit('setUserName', '')
                     this.$router.push({name: '/'})
+                    window.location.reload()
                 }
                 else if (err.response.status === HttpStatus.HTTP_500){
-                    config.error({'msg': 'La sesión expiró'});
+                    config.error({'msg': 'Ups! ah ocurrido un error.'});
                     AppStorage.clear()
                     this.$store.commit('setUpdateUser', false)
                     this.$store.commit('setUserName', '')
                     this.$router.push({name: '/'})
+                    window.location.reload()
                 }
                 else if (err.response.status === HttpStatus.HTTP_422){
                     config.formErrors(err.response.data)

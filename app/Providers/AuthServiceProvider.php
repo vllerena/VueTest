@@ -17,11 +17,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(function (User $user, $ability) {
-            Log::debug($user->getUser()->isSuperUser());
-            if ($user->getUser()->isSuperUser()) {
-                return true;
-            }
-        });
+//        Gate::before(function (User $user, $ability) {
+//            Log::debug($user->getUser()->isSuperUser());
+//            if ($user->getUser()->isSuperUser()) {
+//                return true;
+//            }
+//        });
     }
 }
